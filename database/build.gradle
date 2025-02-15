@@ -33,6 +33,7 @@ dependencies {
 
     // needed if OAuth is used; otherwise this can be left out.
     // See: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html
+    
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.2'
 }
 
