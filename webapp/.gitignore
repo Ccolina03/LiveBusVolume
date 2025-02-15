@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / package files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+env/
+*.venv
+
+# Django stuff:
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static/
+logs/
+local_settings.py
+config/settings/local.py  # In case of local config
+
+# Secrets & environment variables
+*.pem
+*.key
+.env
+*.env
+
+# IDE & OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# Pytest, coverage, and test artifacts
+.coverage
+*.cover
+htmlcov/
+nosetests.xml
+coverage.xml
+*.log
+pytest_cache/
+junit.xml
+
+# Migrations (optional, only ignore untracked files)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Node.js & frontend (if applicable)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+docker-compose.override.yml
+
