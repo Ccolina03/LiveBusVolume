@@ -4,9 +4,11 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Properties;
 import java.util.Random;
+import java.util.UUID;
 
 import static org.apache.kafka.clients.CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG;
 import static org.apache.kafka.clients.CommonClientConfigs.SECURITY_PROTOCOL_CONFIG;
@@ -31,27 +33,31 @@ public class ProducerExample {
         }};
 
         final String topic = "database";
-
-        String[] users = {"eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther"};
-        String[] items = {"book", "alarm clock", "t-shirts", "gift card", "batteries"};
+        final Random rnd = new Random();
+        //Serialize JSON test
+        final ObjectMapper objectMapper = new ObjectMapper(); 
 
         try (final Producer<String, String> producer = new KafkaProducer<>(props)) {
-            final Random rnd = new Random();
-            final int numMessages = 10;
+            final int numMessages = 2;
+
             for (int i = 0; i < numMessages; i++) {
-                String user = users[rnd.nextInt(users.length)];
-                String item = items[rnd.nextInt(items.length)];
+                // Create JSON event
+                ProcessedImageData event = new ProcessedImageData(System.currentTimeMillis(), rnd.nextInt(1000), rnd.nextInt(100));
+                String jsonEvent = objectMapper.writeValueAsString(event);
 
                 producer.send(
-                        new ProducerRecord<>(topic, user, item),
-                        (event, ex) -> {
+                        new ProducerRecord<>(topic, String.valueOf(event.id), jsonEvent),
+                        (metadata, ex) -> {
                             if (ex != null)
                                 ex.printStackTrace();
                             else
-                                System.out.printf("Produced event to topic %s: key = %-10s value = %s%n", topic, user, item);
+                                System.out.printf("Produced event to topic %s: key = %-10s value = %s%n", topic, event.id, jsonEvent);
                         });
             }
+
             System.out.printf("%s events were produced to topic %s%n", numMessages, topic);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
