@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  bus1:
+    build: .
+    container_name: bus1
+    environment:
+      - BUS_ID=BUS_1
+      - ROUTE=101
+      - VIDEO_PATH=bus_camera_footage.mp4
+
+  bus2:
+    build: .
+    container_name: bus2
+    environment:
+      - BUS_ID=BUS_2
+      - ROUTE=102
+      - VIDEO_PATH=bus_camera_footage.mp4
+
+  bus3:
+    build: .
+    container_name: bus3
+    environment:
+      - BUS_ID=BUS_3
+      - ROUTE=103
+      - VIDEO_PATH=bus_camera_footage.mp4
+
+  bus4:
+    build: .
+    container_name: bus4
+    environment:
+      - BUS_ID=BUS_4
+      - ROUTE=104
+      - VIDEO_PATH=bus_camera_footage.mp4
