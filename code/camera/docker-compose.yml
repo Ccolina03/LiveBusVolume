@@ -5,7 +5,7 @@ services:
     build: .
     container_name: bus1
     environment:
-      - BUS_ID=BUS_1
+      - BUS_ID=777
       - ROUTE=101
       - VIDEO_PATH=bus_camera_footage.mp4
 
@@ -13,7 +13,7 @@ services:
     build: .
     container_name: bus2
     environment:
-      - BUS_ID=BUS_2
+      - BUS_ID=778
       - ROUTE=102
       - VIDEO_PATH=bus_camera_footage.mp4
 
@@ -21,7 +21,7 @@ services:
     build: .
     container_name: bus3
     environment:
-      - BUS_ID=BUS_3
+      - BUS_ID=779
       - ROUTE=103
       - VIDEO_PATH=bus_camera_footage.mp4
 
@@ -29,6 +29,6 @@ services:
     build: .
     container_name: bus4
     environment:
-      - BUS_ID=BUS_4
+      - BUS_ID=780
       - ROUTE=104
       - VIDEO_PATH=bus_camera_footage.mp4
