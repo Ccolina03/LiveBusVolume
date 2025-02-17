@@ -90,8 +90,8 @@ def capture(produce: bool, debug: bool, batch_count: int = -1) -> None:
                 message = {
                     'timestamp': timestamp,
                     'frames': batch_frames,
-                    'bus_id': bus_id,
-                    'route': route
+                    'bus_id': int(bus_id),
+                    'route': int(route)
                 }
                 print(f"About to produce message for {bus_id}...", flush=True)
                 client.produce("camera-raw", config, json.dumps(message).encode("utf-8"))
