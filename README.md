@@ -5,10 +5,10 @@ A cutting-edge platform that repurposes existing hardware—from agency, city, a
 ---
 
 ## Table of Contents
-- [Go to Diagram](#diagram)
 - [Overview](#overview)
-- [Features & Technologies](#features)
+- [Features](#features)
 - [Architecture](#architecture)
+- [Technologies](#technologies)
 - [Benefits](#benefits)
 - [Usage](#usage)
 
@@ -45,6 +45,16 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 
 ## Architecture
 
+> **Diagram (Conceptual):**
+
+```mermaid
+flowchart LR
+    A[Camera Feeds] --> B[Apache Kafka]
+    B --> C[Apache Flink]
+    C --> D[ML Object Detection]
+    D --> E[PostgreSQL DB]
+    E --> F[Dashboard & Analytics]
+```
 1. **Camera Feeds:**  
    Existing hardware captures video streams from transit vehicles or public areas.
    
@@ -54,9 +64,10 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 3. **Real-Time Processing with Apache Flink:**  
    Processes data in real time to run ML object detection models, extracting counts from video frames.
 
-4. **Dashboard Integration:**  
+5. **Dashboard Integration:**  
    Processed data is fed into dashboards to display live transit statistics and insights.
 
+## Technologies
 
 ### Data Streaming & Processing
 - **Confluent Apache Kafka**
@@ -68,11 +79,10 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 
 ### Containerization & Orchestration
 - **Docker**
-- **Google Cloud Kubernetes (GCK)**
 
 ### Visualization & Storage
-- **Real-time dashboards** (custom or third-party integrations)
-- **Firebase / NoSQL databases** for efficient data storage
+- **Real-time Django Dashboards**
+- **PostgreSQL databases** for efficient data storage
 
 ---
 
@@ -169,16 +179,4 @@ To further enhance real-time analytics and improve decision-making, our platform
   - Implement **targeted infrastructure improvements**.
   - Justify budget allocations for **fleet expansion or reallocation**.
   - Introduce **incentive programs** to distribute passenger load across different hours or routes.
-
-## Diagram 
-> **Diagram (Conceptual):**
-
-```mermaid
-flowchart LR
-    A[Camera Feeds] --> B[Apache Kafka]
-    B --> C[Apache Flink]
-    C --> D[ML Object Detection]
-    D --> E[Firebase/NoSQL]
-    E --> F[Dashboard & Analytics]
-
 
