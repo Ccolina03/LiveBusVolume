@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
+    }
+}
+
+plugins {
+    id "java"
+    id "idea"
+    id "eclipse"
+}
+
+sourceCompatibility = "11"  // ✅ Fixed Java version (was "1.11")
+targetCompatibility = "11"  // ✅ Fixed Java version
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
+
+dependencies {
+    // Logging
+    implementation 'org.slf4j:slf4j-nop:2.0.3'
+    // Kafka
+    implementation 'org.apache.kafka:kafka-clients:3.4.0' // ✅ Matches Flink's Kafka connector
+    
+    // MongoDB
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.1'
+    
+    // JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    
+    // Flink Core
+   implementation 'org.apache.flink:flink-streaming-java:1.17.1'
+    implementation 'org.apache.flink:flink-clients:1.17.1'
+    implementation 'org.apache.flink:flink-connector-kafka:1.17.1'
+    implementation 'org.apache.flink:flink-connector-datagen:1.17.1'
+    
+    // Flink Connectors
+    implementation 'org.apache.flink:flink-connector-datagen:1.17.1' // ✅ DataGeneratorSource
+    implementation 'org.apache.flink:flink-connector-kafka:1.17.1'   // ✅ KafkaSource
+    
+    // OAuth (optional)
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+}
+
+jar {
+    manifest {
+        attributes(
+            "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
+            "Main-Class": "io.FlinkConsumer"
+        )
+    }
+}
+
+shadowJar {
+    archiveBaseName = "kafka-java-getting-started"
+    archiveClassifier = ''
+}
