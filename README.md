@@ -5,11 +5,10 @@ A cutting-edge platform that repurposes existing hardware—from agency, city, a
 ---
 
 ## Table of Contents
-- [Go to Diagram](#diagram)
 - [Overview](#overview)
 - [Features](#features)
 - [Architecture](#architecture)
-- [Technologies Used](#technologies-used)
+- [Technologies](#technologies)
 - [Benefits](#benefits)
 - [Usage](#usage)
 
@@ -29,20 +28,33 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 
 - **Real-Time Data Pipeline:** 
   - Ingests live video feeds from cameras installed on buses, trains, or public spaces.
+  - Leverages **OpenCV** to simulate frame transmission to Kafka Topics.
 - **Privacy-Preserving Object Detection:** 
   - Only counts individuals without storing or transmitting personal data.
+  - Detect and estimate transit occupancy using a **YOLOv8 ML** object detection model.
 - **Distributed Processing:**
-  - Utilizes [Confluent Apache Kafka](https://www.confluent.io/product/kafka-streaming-platform/) for data streaming.
-  - Processes streams with [Confluent Apache Flink](https://flink.apache.org/) for real-time analytics.
+  - Utilizes **[Confluent Apache Kafka](https://www.confluent.io/product/kafka-streaming-platform/)** for data streaming.
+  - Processes streams with **[Confluent Apache Flink](https://flink.apache.org/)** for real-time analytics.
 - **Scalable Dashboard:**
   - Feeds real-time insights to dynamic dashboards, enabling instant visualization.
+  - Uses **Django**, **PostgreSQL**, and **HTML & CSS** to power our APIs, databases, and front-end dashboard.
 - **Containerized Deployment:**
-  - Uses Docker and GCK (Google Cloud Kubernetes) for seamless scaling and management.
+  - Uses **Docker** Compose to containerize and simplify our deployment.
 
 ---
 
 ## Architecture
 
+> **Diagram (Conceptual):**
+
+```mermaid
+flowchart LR
+    A[Camera Feeds] --> B[Apache Kafka]
+    B --> C[Apache Flink]
+    C --> D[ML Object Detection]
+    D --> E[PostgreSQL DB]
+    E --> F[Dashboard & Analytics]
+```
 1. **Camera Feeds:**  
    Existing hardware captures video streams from transit vehicles or public areas.
    
@@ -52,9 +64,10 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 3. **Real-Time Processing with Apache Flink:**  
    Processes data in real time to run ML object detection models, extracting counts from video frames.
 
-4. **Dashboard Integration:**  
+5. **Dashboard Integration:**  
    Processed data is fed into dashboards to display live transit statistics and insights.
 
+## Technologies
 
 ### Data Streaming & Processing
 - **Confluent Apache Kafka**
@@ -66,11 +79,10 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 
 ### Containerization & Orchestration
 - **Docker**
-- **Google Cloud Kubernetes (GCK)**
 
 ### Visualization & Storage
-- **Real-time dashboards** (custom or third-party integrations)
-- **Firebase / NoSQL databases** for efficient data storage
+- **Real-time Django Dashboards**
+- **PostgreSQL databases** for efficient data storage
 
 ---
 
@@ -167,16 +179,4 @@ To further enhance real-time analytics and improve decision-making, our platform
   - Implement **targeted infrastructure improvements**.
   - Justify budget allocations for **fleet expansion or reallocation**.
   - Introduce **incentive programs** to distribute passenger load across different hours or routes.
-
-## Diagram 
-> **Diagram (Conceptual):**
-
-```mermaid
-flowchart LR
-    A[Camera Feeds] --> B[Apache Kafka]
-    B --> C[Apache Flink]
-    C --> D[ML Object Detection]
-    D --> E[Firebase/NoSQL]
-    E --> F[Dashboard & Analytics]
-
 
