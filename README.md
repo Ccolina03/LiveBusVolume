@@ -7,9 +7,8 @@ A cutting-edge platform that repurposes existing hardware—from agency, city, a
 ## Table of Contents
 - [Go to Diagram](#diagram)
 - [Overview](#overview)
-- [Features](#features)
+- [Features & Technologies](#features)
 - [Architecture](#architecture)
-- [Technologies Used](#technologies-used)
 - [Benefits](#benefits)
 - [Usage](#usage)
 
@@ -29,15 +28,18 @@ Smart Transit Real-Time Analytics transforms existing camera infrastructure into
 
 - **Real-Time Data Pipeline:** 
   - Ingests live video feeds from cameras installed on buses, trains, or public spaces.
+  - Leverages **OpenCV** to simulate frame transmission to Kafka Topics.
 - **Privacy-Preserving Object Detection:** 
   - Only counts individuals without storing or transmitting personal data.
+  - Detect and estimate transit occupancy using a **YOLOv8 ML** object detection model.
 - **Distributed Processing:**
-  - Utilizes [Confluent Apache Kafka](https://www.confluent.io/product/kafka-streaming-platform/) for data streaming.
-  - Processes streams with [Confluent Apache Flink](https://flink.apache.org/) for real-time analytics.
+  - Utilizes **[Confluent Apache Kafka](https://www.confluent.io/product/kafka-streaming-platform/)** for data streaming.
+  - Processes streams with **[Confluent Apache Flink](https://flink.apache.org/)** for real-time analytics.
 - **Scalable Dashboard:**
   - Feeds real-time insights to dynamic dashboards, enabling instant visualization.
+  - Uses **Django**, **PostgreSQL**, and **HTML & CSS** to power our APIs, databases, and front-end dashboard.
 - **Containerized Deployment:**
-  - Uses Docker and GCK (Google Cloud Kubernetes) for seamless scaling and management.
+  - Uses **Docker** Compose to containerize and simplify our deployment.
 
 ---
 
