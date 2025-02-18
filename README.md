@@ -2,6 +2,8 @@
 
 A cutting-edge platform that repurposes existing hardware—from agency, city, and government cameras—to deliver real-time public transit analytics. Our solution leverages privacy-preserving object detection to count passengers (without recording personal identities) and processes these counts via a distributed pipeline. Imagine a city like Edmonton tracking bus ridership across 900+ buses in real time to optimize transit operations and resource allocation.
 
+![image](https://github.com/user-attachments/assets/57affe4f-895a-4967-8437-2267afe41276)
+
 ---
 
 ## Table of Contents
